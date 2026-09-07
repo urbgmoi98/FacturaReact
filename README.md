@@ -23,18 +23,14 @@ La aplicación usa [json-server](https://github.com/typicode/json-server) para p
 
 ### Cómo ejecutar
 
-Abre dos terminales en la raíz del proyecto:
+Ejecuta esta sola instrucción desde la raíz del proyecto:
 
-1. Inicia la API (base de datos):
-   ```sh
-   npm run server
-   ```
-   Esto levanta el servidor REST en `http://localhost:3001` usando `src/db.json` como base de datos. El archivo se actualiza automáticamente al guardar datos.
+```sh
+npm run dev
+```
 
+Esto levanta simultáneamente:
+- la API REST en `http://localhost:3001` usando `src/db.json`
+- la app en `http://localhost:5173`
 
-
-2. En la otra terminal, inicia la app:
-   ```sh
-   npm run dev
-   ```
-   Abre `http://localhost:5173` para usar la aplicación. Las facturas guardadas se conservan en `src/db.json` aunque reinicies la app.
+Las facturas guardadas se conservan en `src/db.json` aunque reinicies la app.
