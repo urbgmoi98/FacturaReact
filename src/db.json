@@ -43,6 +43,34 @@
       "emitterRuc": "9999999999",
       "emitterName": "Empresa Demo Local",
       "id": "v4urPW0nvew"
+    },
+    {
+      "id": "njzzzAgYokw",
+      "emitterName": "dvdfger",
+      "emitterRuc": "jnefjkwe",
+      "clientName": "hvjgvkhvkh",
+      "clientAddress": "khvkhvhkvkh",
+      "invoiceNumber": "65415165205",
+      "date": "2026-09-07",
+      "taxRate": "13",
+      "items": [
+        {
+          "id": "6a5a4485-ff7a-4f6b-8c6b-9b25ad96b9b6",
+          "description": "Pantalla",
+          "quantity": "100",
+          "unitPrice": "500"
+        },
+        {
+          "id": "6e07e860-6642-4657-8366-0115ca41fc8e",
+          "description": "Teclados",
+          "quantity": "50",
+          "unitPrice": "60"
+        }
+      ],
+      "subtotal": 53000,
+      "tax": 6890,
+      "total": 59890,
+      "createdAt": "2026-09-07T20:00:43.916Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
