@@ -1,0 +1,49 @@
+{
+  "invoices": [
+    {
+      "clientAddress": "Calle 123",
+      "id": "FfC_PI-usdA",
+      "tax": 2.52,
+      "invoiceNumber": "0001",
+      "clientName": "Cliente Test",
+      "subtotal": 21,
+      "createdAt": "2026-09-07T10:00:00.000Z",
+      "taxRate": 12,
+      "items": [
+        {
+          "unitPrice": 10.5,
+          "description": "Producto A",
+          "id": "it-1",
+          "quantity": 2
+        }
+      ],
+      "total": 23.52,
+      "date": "2026-09-07",
+      "emitterRuc": "123456",
+      "emitterName": "Empresa Test"
+    },
+    {
+      "total": 16.8,
+      "clientAddress": "Calle Ficticia 123",
+      "subtotal": 15,
+      "clientName": "Cliente Demo",
+      "taxRate": 12,
+      "items": [
+        {
+          "unitPrice": 15,
+          "description": "Servicio local de prueba",
+          "id": "demo-item-2",
+          "quantity": 1
+        }
+      ],
+      "tax": 1.8,
+      "createdAt": "2026-09-07T12:00:00.000Z",
+      "date": "2026-09-07",
+      "invoiceNumber": "DEMO-0002",
+      "emitterRuc": "9999999999",
+      "emitterName": "Empresa Demo Local",
+      "id": "v4urPW0nvew"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
