@@ -1,4 +1,4 @@
-export default function InvoiceList({ invoices, onSelect, loading = false }) {
+export default function InvoiceList({ invoices, onSelect, onDelete }) {
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -16,14 +16,9 @@ export default function InvoiceList({ invoices, onSelect, loading = false }) {
 
   return (
     <div className="card">
-      <h2 className="card-title">📋 Facturas Registradas</h2>
+      <h2 className="card-title"> 📋 Facturas Registradas 📋</h2>
 
-      {loading ? (
-        <div className="empty-state">
-          <div className="empty-state-icon">⏳</div>
-          <p>Cargando facturas...</p>
-        </div>
-      ) : invoices.length === 0 ? (
+      {invoices.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">📭</div>
           <p>No hay facturas registradas</p>
@@ -43,8 +38,21 @@ export default function InvoiceList({ invoices, onSelect, loading = false }) {
                   {invoice.clientName} • {formatDate(invoice.date)}
                 </div>
               </div>
-              <div className="invoice-item-total">
-                {formatCurrency(invoice.total)}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="invoice-item-total">
+                  {formatCurrency(invoice.total)}
+                </div>
+                <button
+                  className="btn btn-danger"
+                  style={{ padding: '0.4rem 0.6rem', fontSize: '0.75rem' }}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onDelete(invoice.id)
+                  }}
+                  title=" 🗑️​ Borrar Factura 🗑️​ "
+                >
+                  🗑️
+                </button>
               </div>
             </li>
           ))}
