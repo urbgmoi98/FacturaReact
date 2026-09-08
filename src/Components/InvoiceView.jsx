@@ -1,4 +1,4 @@
-export default function InvoiceView({ invoice }) {
+export default function InvoiceView({ invoice, printMode, onPrint, onBack }) {
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
