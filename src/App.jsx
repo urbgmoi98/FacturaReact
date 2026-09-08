@@ -2,20 +2,25 @@ import { useState, useEffect } from 'react'
 import InvoiceForm from './Components/InvoiceForm'
 import InvoiceList from './Components/InvoiceList'
 import InvoiceView from './Components/InvoiceView'
-import InvoiceExporter from './components/InvoiceExporter'
+import InvoiceExporter from ' ./Components/InvoiceExporter'
+import {
+  getInvoices,
+  getInvoiceById,
+  createInvoice,
+  deleteInvoice,
+} from './services/invoiceService'
 
 function App() {
-  const [invoices, setInvoices] = useState(() => {
-    const saved = localStorage.getItem('invoices')
-    return saved ? JSON.parse(saved) : []
-  })
+  const [invoices, setInvoices] = useState([])
   const [selectedInvoice, setSelectedInvoice] = useState(null)
   const [printMode, setPrintMode] = useState(false)
 
-  // Persistencia en localStorage
+  // Carga inicial: las facturas se leen de la API (json-server)
   useEffect(() => {
-    localStorage.setItem('invoices', JSON.stringify(invoices))
-  }, [invoices])
+    getInvoices()
+      .then(setInvoices)
+      .catch((error) => console.error('No se pudo cargar el listado de facturas:', error))
+  }, [])
 
   // Manejar modo impresión
   useEffect(() => {
@@ -28,13 +33,24 @@ function App() {
     }
   }, [printMode])
 
-  const handleSaveInvoice = (invoice) => {
-    setInvoices((prev) => [invoice, ...prev])
+  const handleSaveInvoice = async (invoice) => {
+    try {
+      const saved = await createInvoice(invoice)
+      setInvoices((prev) => [saved, ...prev])
+    } catch (error) {
+      console.error('No se pudo guardar la factura:', error)
+    }
   }
 
-  const handleSelectInvoice = (invoice) => {
-    setSelectedInvoice(invoice)
-    setPrintMode(false)
+  // Consulta directa por ID: GET /invoices/{id}, sin filtrar el listado
+  const handleSelectInvoice = async (id) => {
+    try {
+      const invoice = await getInvoiceById(id)
+      setSelectedInvoice(invoice)
+      setPrintMode(false)
+    } catch (error) {
+      console.error(`No se pudo obtener la factura ${id}:`, error)
+    }
   }
 
   const handleBackToList = () => {
@@ -46,10 +62,15 @@ function App() {
     setPrintMode(true)
   }
 
-  const handleDeleteInvoice = (id) => {
-    setInvoices((prev) => prev.filter((inv) => inv.id !== id))
-    if (selectedInvoice?.id === id) {
-      setSelectedInvoice(null)
+  const handleDeleteInvoice = async (id) => {
+    try {
+      await deleteInvoice(id)
+      setInvoices((prev) => prev.filter((inv) => inv.id !== id))
+      if (selectedInvoice?.id === id) {
+        setSelectedInvoice(null)
+      }
+    } catch (error) {
+      console.error(`No se pudo eliminar la factura ${id}:`, error)
     }
   }
 

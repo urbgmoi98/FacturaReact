@@ -1,19 +1,6 @@
+import { formatCurrency, formatDate } from '../utils/invoiceUtils'
+
 export default function InvoiceList({ invoices, onSelect, onDelete }) {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(value)
-  }
-
-  const formatDate = (dateStr) => {
-    return new Date(dateStr).toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  }
-
   return (
     <div className="card">
       <h2 className="card-title"> 📋 Facturas Registradas 📋</h2>
@@ -30,7 +17,7 @@ export default function InvoiceList({ invoices, onSelect, onDelete }) {
             <li
               key={invoice.id}
               className="invoice-item"
-              onClick={() => onSelect(invoice)}
+              onClick={() => onSelect(invoice.id)}
             >
               <div>
                 <div className="invoice-item-number">#{invoice.invoiceNumber}</div>

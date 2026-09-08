@@ -1,19 +1,6 @@
+import { formatCurrency, formatDate, itemSubtotal } from '../utils/invoiceUtils'
+
 export default function InvoiceView({ invoice, printMode, onPrint, onBack }) {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(value)
-  }
-
-  const formatDate = (dateStr) => {
-    return new Date(dateStr).toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  }
-
   return (
     <div className="invoice-paper">
       <div className="invoice-header">
@@ -55,7 +42,7 @@ export default function InvoiceView({ invoice, printMode, onPrint, onBack }) {
               <td>{item.quantity}</td>
               <td>{formatCurrency(parseFloat(item.unitPrice))}</td>
               <td>
-                {formatCurrency(parseFloat(item.quantity) * parseFloat(item.unitPrice))}
+                {formatCurrency(itemSubtotal(item))}
               </td>
             </tr>
           ))}

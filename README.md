@@ -19,7 +19,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## Base de datos (db.json)
 
-La aplicación usa [json-server](https://github.com/typicode/json-server) para persistir las facturas en el archivo `src/db.json`.: cada vez que se guarda una factura desde el formulario, esta se escribe automáticamente en la base de datos.
+La aplicación usa [json-server](https://github.com/typicode/json-server) para persistir las facturas en el archivo `db.json` (en la raíz del proyecto): cada vez que se guarda una factura desde el formulario, esta se escribe automáticamente en la base de datos.
 
 ### Cómo ejecutar
 
@@ -30,7 +30,7 @@ npm run dev
 ```
 
 Esto levanta simultáneamente:
-- la API REST en `http://localhost:3001` usando `src/db.json`
+- la API REST en `http://localhost:3001` usando `db.json`
 - la app en `http://localhost:5173`
 
-Las facturas guardadas se conservan en `src/db.json` aunque reinicies la app.
+Las facturas guardadas se conservan en `db.json` aunque reinicies la app.

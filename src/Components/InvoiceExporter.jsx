@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
+import { formatCurrency, formatDate, itemSubtotal } from '../utils/invoiceUtils'
 
 export default function InvoiceExporter({ invoice, onBack, printMode }) {
   const [isExporting, setIsExporting] = useState(false)
@@ -57,21 +58,6 @@ export default function InvoiceExporter({ invoice, onBack, printMode }) {
     } finally {
       setIsExporting(false)
     }
-  }
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(value)
-  }
-
-  const formatDate = (dateStr) => {
-    return new Date(dateStr).toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
   }
 
   return (
@@ -300,7 +286,7 @@ export default function InvoiceExporter({ invoice, onBack, printMode }) {
                     fontWeight: 600,
                   }}
                 >
-                  {formatCurrency(parseFloat(item.quantity) * parseFloat(item.unitPrice))}
+                  {formatCurrency(itemSubtotal(item))}
                 </td>
               </tr>
             ))}

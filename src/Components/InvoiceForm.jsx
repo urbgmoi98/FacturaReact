@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { calculateTotals, createId } from '../utils/invoiceUtils'
+
 const initialItem = () => ({
-  id: crypto.randomUUID(),
+  id: createId(),
   description: '',
   quantity: '',
   unitPrice: '',
@@ -82,15 +84,10 @@ export default function InvoiceForm({ onSave }) {
 
     if (Object.keys(validationErrors).length > 0) return
 
-    const subtotal = form.items.reduce((sum, item) => {
-      return sum + parseFloat(item.quantity) * parseFloat(item.unitPrice)
-    }, 0)
-
-    const tax = subtotal * (parseFloat(form.taxRate) / 100)
-    const total = subtotal + tax
+    const { subtotal, tax, total } = calculateTotals(form.items, form.taxRate)
 
     const invoice = {
-      id: crypto.randomUUID(),
+      id: createId(),
       ...form,
       subtotal,
       tax,
