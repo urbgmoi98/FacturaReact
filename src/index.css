@@ -982,3 +982,72 @@ body::after {
     text-align: left;
   }
 }
+/* ============================================
+   ESTILOS DE IMPRESIÓN
+   ============================================ */
+@media print {
+  body {
+    background: white !important;
+    animation: none !important;
+  }
+
+  body::before,
+  body::after,
+  .app-container::before,
+  .app-container::after {
+    display: none !important;
+  }
+
+  .no-print,
+  .hidden-print,
+  .app-header,
+  .back-btn-wrapper,
+  .btn {
+    display: none !important;
+  }
+
+  .app-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .invoice-paper {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    background: white !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+  }
+
+  .invoice-paper::before,
+  .invoice-paper::after {
+    display: none !important;
+  }
+
+  .invoice-table th {
+    background: #f1f5f9 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .invoice-totals-box {
+    background: #f8fafc !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .invoice-badge-box {
+    background: #f0f9ff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Clase utilitaria para ocultar en impresión */
+.hidden-print {
+  display: none !important;
+}
