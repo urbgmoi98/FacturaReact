@@ -71,6 +71,13 @@
       "tax": 6890,
       "total": 59890,
       "createdAt": "2026-09-07T20:00:43.916Z"
+    },
+    {
+      "name": "Rodrigo Chaves",
+      "email": "rodripachalover@gmail.com",
+      "message": "Paguele a la caja",
+      "id": "7n78QQLJXUQ"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

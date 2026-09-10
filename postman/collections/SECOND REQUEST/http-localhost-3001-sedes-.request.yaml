@@ -1,0 +1,9 @@
+$kind: http-request
+name: http://localhost:3001/sedes/
+description: ""
+url: http://localhost:3001/sedes/
+method: GET
+body:
+  type: json
+  content: ""
+order: 1788904319470

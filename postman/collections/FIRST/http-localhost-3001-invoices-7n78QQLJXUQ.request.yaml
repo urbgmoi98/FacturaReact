@@ -1,0 +1,15 @@
+$kind: http-request
+name: http://localhost:3001/invoices/7n78QQLJXUQ
+description: ""
+url: http://localhost:3001/invoices/7n78QQLJXUQ
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Rodrigo Chaves\"\r
+
+    }"
+order: 1788899360258
